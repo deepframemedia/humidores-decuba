@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECUBA — Nuestra Historia · Humidores Artesanales desde 1995</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:         #0D0A07;
+      --surface:    #1A1008;
+      --tobacco:    #3D1F0A;
+      --gold:       #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dim:   rgba(201,168,76,0.12);
+      --cream:      #F5ECD7;
+      --cream-dim:  rgba(245,236,215,0.55);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Cormorant Garamond', Georgia, serif;
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── Reveal ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.22s; }
+    .d3 { transition-delay: 0.34s; }
+    .d4 { transition-delay: 0.46s; }
+
+    /* ── Nav ────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13,10,7,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      transition: padding 0.4s var(--ease-out);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .nav-logo span {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      color: var(--cream-dim);
+      font-family: var(--font-body);
+      font-weight: 300;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.35s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.6rem 1.6rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+    /* ── Hero ───────────────────────────────── */
+    .about-hero {
+      position: relative;
+      height: 70vh;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .about-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(13,10,7,0.95) 0%, rgba(13,10,7,0.4) 50%, rgba(13,10,7,0.2) 100%);
+    }
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 4rem 5rem;
+      max-width: 860px;
+    }
+    .about-hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.3s forwards;
+    }
+    .about-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeUp 1.1s var(--ease-out) 0.5s forwards;
+    }
+    .about-hero-title em { font-style: italic; color: var(--gold-light); }
+
+    /* ── Gold rule ──────────────────────────── */
+    .gold-rule {
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 1.8rem 0;
+    }
+    .gold-rule.center { margin-left: auto; margin-right: auto; }
+
+    /* ── Section labels ─────────────────────── */
+    .label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--cream);
+    }
+    .section-title em { font-style: italic; color: var(--gold-light); }
+
+    /* ── Intro ──────────────────────────────── */
+    .intro {
+      padding: 7rem 4rem;
+      background: var(--bg);
+    }
+    .intro-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+    .intro-lead {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+    .intro-text {
+      font-size: 1.05rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .intro-image {
+      position: relative;
+    }
+    .intro-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .intro-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,168,76,0.2);
+      pointer-events: none;
+    }
+    .intro-image-caption {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 1.2rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-style: italic;
+      max-width: 200px;
+      line-height: 1.4;
+    }
+
+    /* ── Mission & Vision ───────────────────── */
+    .mv {
+      padding: 7rem 4rem;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .mv::before {
+      content: 'DECUBA';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 18vw, 18rem);
+      font-weight: 700;
+      color: rgba(201,168,76,0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    .mv-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .mv-card {
+      padding: 3rem;
+      border: 1px solid rgba(201,168,76,0.15);
+      position: relative;
+    }
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 3rem;
+      width: 60px; height: 2px;
+      background: var(--gold);
+    }
+    .mv-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .mv-card h3 em { font-style: italic; color: var(--gold-light); }
+    .mv-card p {
+      font-size: 1rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+    }
+
+    /* ── Stats bar ──────────────────────────── */
+    .stats-bar {
+      padding: 5rem 4rem;
+      background:
+        linear-gradient(135deg, #3D1F0A 0%, #231508 60%, #1A1008 100%);
+      position: relative;
+    }
+    .stats-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        170deg, transparent 0, transparent 18px,
+        rgba(0,0,0,0.08) 18px, rgba(0,0,0,0.08) 19px,
+        transparent 19px, transparent 40px
+      );
+      pointer-events: none;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .stat-block {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-left: 1px solid rgba(201,168,76,0.12);
+    }
+    .stat-block:first-child { border-left: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+
+    /* ── Timeline ───────────────────────────── */
+    .timeline {
+      padding: 8rem 4rem;
+      background: var(--bg);
+    }
+    .timeline-header {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+    }
+    .timeline-items {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .timeline-items::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 10%, rgba(201,168,76,0.3) 90%, transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    .tl-left { text-align: right; }
+    .tl-right { text-align: left; }
+    .tl-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--gold);
+      flex-shrink: 0;
+    }
+    .tl-year {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: rgba(201,168,76,0.35);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .tl-desc {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+    /* Alternate sides */
+    .tl-item:nth-child(even) .tl-left { order: 3; text-align: left; }
+    .tl-item:nth-child(even) .tl-right { order: 1; text-align: right; }
+    .tl-item:nth-child(even) .tl-dot { order: 2; }
+
+    /* ── Awards ─────────────────────────────── */
+    .awards {
+      padding: 7rem 4rem;
+      background: var(--surface);
+    }
+    .awards-header {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+    .awards-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .award-card {
+      padding: 2.5rem;
+      border: 1px solid rgba(201,168,76,0.12);
+      background: var(--bg);
+      position: relative;
+      transition: border-color 0.3s, transform 0.4s var(--ease-out);
+    }
+    .award-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-4px);
+    }
+    .award-year {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .award-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .award-org {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── Reach ──────────────────────────────── */
+    .reach {
+      padding: 7rem 4rem;
+      background: var(--tobacco);
+      position: relative;
+      overflow: hidden;
+    }
+    .reach-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .reach-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .reach-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .reach-text p {
+      font-size: 1.05rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .reach-logos {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .reach-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.15);
+      background: rgba(13,10,7,0.5);
+    }
+    .reach-icon {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+    .reach-icon svg { width: 22px; height: 22px; }
+    .reach-item-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .reach-item-text span {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--cream-dim);
+    }
+
+    /* ── Team / Founder ─────────────────────── */
+    .founder {
+      padding: 8rem 4rem;
+      background: var(--bg);
+    }
+    .founder-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      align-items: center;
+    }
+    .founder-image {
+      position: relative;
+    }
+    .founder-image img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .founder-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,168,76,0.2);
+      pointer-events: none;
+    }
+    .founder-quote-block {
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 1.5rem 2rem;
+      max-width: 260px;
+    }
+    .founder-quote-block p {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .founder-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .founder-bio {
+      font-size: 1.05rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── CTA Footer ─────────────────────────── */
+    .about-cta {
+      padding: 7rem 4rem;
+      background: var(--surface);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+    }
+    .about-cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .about-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .about-cta h2 em { font-style: italic; color: var(--gold-light); }
+    .about-cta p {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      margin-bottom: 2.5rem;
+    }
+    .cta-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.9rem 2.5rem;
+      transition: background 0.3s, transform 0.3s var(--ease-out);
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      border-bottom: 1px solid rgba(245,236,215,0.35);
+      padding-bottom: 3px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
+
+    /* ── Footer ─────────────────────────────── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 4rem 4rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245,236,215,0.08);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.4rem; }
+    .footer-tagline {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin: 1.5rem 0 1.5rem;
+      max-width: 240px;
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .social-link {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(201,168,76,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      transition: background 0.3s;
+    }
+    .social-link:hover { background: var(--gold); color: var(--bg); }
+    .social-link svg { width: 13px; height: 13px; }
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a { font-size: 0.9rem; color: var(--cream-dim); transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(245,236,215,0.3); }
+    .footer-legal { display: flex; gap: 2rem; }
+    .footer-legal a { font-size: 0.75rem; color: rgba(245,236,215,0.3); transition: color 0.3s; }
+    .footer-legal a:hover { color: var(--cream-dim); }
+
+    /* ── WhatsApp ───────────────────────────── */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 400;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); }
+    .whatsapp-btn svg { width: 30px; height: 30px; }
+    .whatsapp-pulse {
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      background: #25D366;
+      opacity: 0.4;
+      animation: waPulse 2.2s ease-out infinite;
+    }
+
+    /* ── Keyframes ──────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes waPulse {
+      0%  { transform: scale(1); opacity: 0.4; }
+      70% { transform: scale(1.6); opacity: 0; }
+      100%{ transform: scale(1.6); opacity: 0; }
+    }
+
+    /* ── Responsive ─────────────────────────── */
+    @media (max-width: 1024px) {
+      .nav { padding: 1.2rem 2rem; }
+      .about-hero-content { padding: 0 2rem 4rem; }
+      .intro { padding: 5rem 2rem; }
+      .intro-inner { gap: 4rem; }
+      .mv { padding: 5rem 2rem; }
+      .stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .stat-block:nth-child(3) { border-left: none; }
+      .timeline { padding: 6rem 2rem; }
+      .awards { padding: 5rem 2rem; }
+      .awards-grid { grid-template-columns: repeat(2, 1fr); }
+      .reach { padding: 5rem 2rem; }
+      .reach-inner { gap: 4rem; }
+      .founder { padding: 6rem 2rem; }
+      .founder-inner { gap: 4rem; }
+      .footer { padding: 4rem 2rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .intro-inner { grid-template-columns: 1fr; }
+      .mv-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(1) { border-left: none; }
+      .stat-block:nth-child(2) { border-left: 1px solid rgba(201,168,76,0.12); }
+      .timeline-items::before { left: 1rem; }
+      .tl-item { grid-template-columns: auto 1fr; grid-template-rows: auto auto; }
+      .tl-left,
+      .tl-item:nth-child(even) .tl-right { display: none; }
+      .tl-right,
+      .tl-item:nth-child(even) .tl-left { order: 0 !important; text-align: left !important; }
+      .tl-dot { order: 0 !important; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .reach-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .founder-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="DECUBA inicio">
+      DE CUBA
+      <span>Humidores Artesanales</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#coleccion">Colección</a></li>
+      <li><a href="index.html#taller">Taller</a></li>
+      <li><a href="about.html" class="active">Historia</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+      <li><a href="index.html#coleccion" class="nav-cta">Ver Colección</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero" aria-label="Historia de DECUBA">
+    <div class="about-hero-bg">
+      <img src="https://humidoresdecuba.com/wp-content/uploads/2026/04/rough-old-wooden-retro-background-2026-01-06-09-05-40-utc.jpg-1-1.png"
+           alt="" aria-hidden="true" loading="eager" />
+    </div>
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <p class="about-hero-eyebrow">Pinar del Río, Cuba · Desde 1995</p>
+      <h1 class="about-hero-title">
+        Rescatando el arte<br>de dos <em>tradiciones</em>
+      </h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" aria-labelledby="intro-title">
+    <div class="intro-inner">
+
+      <div>
+        <p class="label reveal">Sobre DECUBA</p>
+        <h2 class="section-title reveal d1" id="intro-title">
+          Ebanistería y tabaco:<br><em>dos tradiciones cubanas</em>
+        </h2>
+        <div class="gold-rule reveal d2"></div>
+        <p class="intro-lead reveal d2">
+          "Sus humidores son testigos de la mezcla de dos tradiciones históricas cubanas: la ebanistería y el cultivo del tabaco."
+        </p>
+        <p class="intro-text reveal d3">
+          DECUBA es un colectivo artístico especializado durante más de 30 años en la elaboración artesanal de humidores y estuches. Fundado en 1995-1996 por Jorge Luis Milán Domínguez en Pinar del Río — la cuna del mejor tabaco del mundo — nació con el propósito de fabricar y comercializar humidores premium de exportación, especializándose en piezas exclusivas y de edición limitada para Habanos S.A. y coleccionistas internacionales.
+        </p>
+        <p class="intro-text reveal d3">
+          Nuestra materia prima principal es la madera de cedro cubano (<em>Cedrela Odorata</em>), que aporta el ambiente único de aromas y sabores que permite la conservación y el envejecimiento óptimo del habano. Rescatamos y desarrollamos oficios ancestrales: la ebanistería, la marquetería y la talla en madera, creando nuevas técnicas artesanales que cuentan historias a través de la madera.
+        </p>
+        <p class="intro-text reveal d4">
+          Su propósito es claro: <em>trascender el tiempo y, siempre, absolutamente siempre, contar una historia.</em>
+        </p>
+      </div>
+
+      <div class="intro-image reveal d2">
+        <img src="https://humidoresdecuba.com/wp-content/uploads/2026/02/473089192_122139748244390247_749619561826309174_n.jpg"
+             alt="Taller artesanal DECUBA — detalle de trabajo" loading="lazy" />
+        <div class="intro-image-caption">
+          Taller en Pinar del Río, donde nace cada pieza
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="mv" aria-label="Misión y Visión">
+    <div class="mv-inner">
+      <div class="mv-card reveal">
+        <h3><em>Misión</em></h3>
+        <p>
+          Fabricar y comercializar humidores premium de exportación, especializándonos en piezas exclusivas y de edición limitada para Habanos S.A. y coleccionistas internacionales. Rescatar la cultura del tabaco y las técnicas artesanales cubanas tradicionales, fusionando la maestría de la ebanistería con la identidad del habano para crear objetos que conservan y celebran el mejor tabaco del mundo.
+        </p>
+      </div>
+      <div class="mv-card reveal d2">
+        <h3><em>Visión</em></h3>
+        <p>
+          Convertirnos en el colectivo artístico de referencia en el sector del tabaco de lujo, siendo DECUBA sinónimo de autenticidad y prestigio a nivel mundial. Aspiramos a que cada pieza que sale de nuestro taller sea reconocida como obra de arte funcional que trasciende generaciones — objetos guardianes del patrimonio familiar que preservan los sabores y aromas de las generaciones pasadas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-bar" aria-label="DECUBA en cifras">
+    <div class="stats-inner">
+      <div class="stat-block reveal">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Años de<br>experiencia</div>
+      </div>
+      <div class="stat-block reveal d1">
+        <div class="stat-num">3.000+</div>
+        <div class="stat-label">Piezas únicas<br>creadas</div>
+      </div>
+      <div class="stat-block reveal d2">
+        <div class="stat-num">147</div>
+        <div class="stat-label">Puntos Casa del<br>Habano abastecidos</div>
+      </div>
+      <div class="stat-block reveal d3">
+        <div class="stat-num">75+</div>
+        <div class="stat-label">Países en los<br>que estamos presentes</div>
+      </div>
+      <div class="stat-block reveal d4">
+        <div class="stat-num">70+</div>
+        <div class="stat-label">Eventos<br>internacionales</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline" aria-labelledby="timeline-title">
+    <div class="timeline-header">
+      <p class="label reveal">Nuestra trayectoria</p>
+      <h2 class="section-title reveal d1" id="timeline-title">
+        Una historia de <em>casi tres décadas</em>
+      </h2>
+      <div class="gold-rule reveal d2"></div>
+    </div>
+
+    <div class="timeline-items">
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-year">1995</div>
+          <div class="tl-title">Fundación de DECUBA</div>
+          <div class="tl-desc">Jorge Luis Milán Domínguez funda DECUBA en Pinar del Río e inicia la producción artesanal de humidores en madera de cedro cubano.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-left"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-right">
+          <div class="tl-year">2000</div>
+          <div class="tl-title">Primeras exportaciones · 75 países</div>
+          <div class="tl-desc">Se alcanzan las primeras exportaciones internacionales y se establece colaboración con el Fondo Cubano de Bienes Culturales (FCBC). Presencia en más de 75 países.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-year">2002</div>
+          <div class="tl-title">Licencia Habanos S.A.</div>
+          <div class="tl-desc">DECUBA recibe la licencia oficial de Habanos S.A. y crea la colección exclusiva Habanos Collection, con 3.000 piezas únicas numeradas y certificadas.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-left"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-right">
+          <div class="tl-year">2008</div>
+          <div class="tl-title">Premio Artesanía del FCBC</div>
+          <div class="tl-desc">Reconocimiento a la excelencia artesanal por parte del Fondo Cubano de Bienes Culturales, consolidando a DECUBA como referente nacional e internacional.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-year">2013–2015</div>
+          <div class="tl-title">Mejor Exportador</div>
+          <div class="tl-desc">Premio al Mejor Exportador en las Ferias Internacionales de Artesanía de 2013 y 2015, reconociendo el alcance global de la marca cubana.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-left"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-right">
+          <div class="tl-year">2018</div>
+          <div class="tl-title">Premio Categoría de Producto</div>
+          <div class="tl-desc">Distinción por innovación y excelencia en la categoría de producto artesanal de lujo a nivel internacional.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-year">2020</div>
+          <div class="tl-title">Actor clave en sustitución de importaciones</div>
+          <div class="tl-desc">DECUBA asume la producción de artículos previamente importados, convirtiéndose en pieza fundamental del sector artesanal cubano.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item reveal d1">
+        <div class="tl-left"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-right">
+          <div class="tl-year">2023</div>
+          <div class="tl-title">Reconocimiento Medioambiental CITMA</div>
+          <div class="tl-desc">Distinción del Centro de Inspección y Control Medioambiental por la gestión sostenible y responsable en el uso de materiales naturales.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-year">2024</div>
+          <div class="tl-title">Mejor Stand — Festival del Habano XXIV</div>
+          <div class="tl-desc">Premio al mejor diseño de stand en el Festival del Habano XXIV, la feria más importante del mundo del tabaco habano. Máximo reconocimiento de la industria.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-right"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AWARDS GRID -->
+  <section class="awards" aria-labelledby="awards-title">
+    <div class="awards-header">
+      <p class="label reveal">Reconocimientos</p>
+      <h2 class="section-title reveal d1" id="awards-title">
+        Décadas de <em>excelencia reconocida</em>
+      </h2>
+      <div class="gold-rule center reveal d2"></div>
+    </div>
+
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-year">2008</div>
+        <div class="award-title">Premio Artesanía Artística</div>
+        <div class="award-org">Fondo Cubano de Bienes Culturales</div>
+      </div>
+      <div class="award-card reveal d1">
+        <div class="award-year">2013</div>
+        <div class="award-title">Mejor Exportador</div>
+        <div class="award-org">Feria Internacional de Artesanía</div>
+      </div>
+      <div class="award-card reveal d2">
+        <div class="award-year">2015</div>
+        <div class="award-title">Mejor Exportador</div>
+        <div class="award-org">Feria Internacional de Artesanía</div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-year">2018</div>
+        <div class="award-title">Premio Categoría de Producto</div>
+        <div class="award-org">Feria Internacional de Artesanía</div>
+      </div>
+      <div class="award-card reveal d1">
+        <div class="award-year">2023</div>
+        <div class="award-title">Reconocimiento Medioambiental</div>
+        <div class="award-org">CITMA · Cuba</div>
+      </div>
+      <div class="award-card reveal d2">
+        <div class="award-year">2024</div>
+        <div class="award-title">Mejor Stand Design</div>
+        <div class="award-org">Festival del Habano XXIV</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REACH / PRESENCIA -->
+  <section class="reach" aria-labelledby="reach-title">
+    <div class="reach-bg" aria-hidden="true">
+      <img src="https://humidoresdecuba.com/wp-content/uploads/2026/02/burning-cigar-in-ashtray-and-cognac-2026-01-09-06-57-32-utc.jpg-1.png"
+           alt="" loading="lazy" />
+    </div>
+    <div class="reach-inner">
+
+      <div class="reach-text">
+        <p class="label reveal">Presencia global</p>
+        <h2 class="section-title reveal d1" id="reach-title">
+          Más de 75 países<br><em>nos reconocen</em>
+        </h2>
+        <div class="gold-rule reveal d2"></div>
+        <p class="reveal d2">
+          Desde Pinar del Río hacia el mundo. Nuestros humidores llegan a coleccionistas, Casas del Habano, hoteles de lujo y eventos internacionales en los cinco continentes. Cada pieza que exportamos lleva con ella la esencia del cedro cubano y décadas de maestría artesanal.
+        </p>
+        <p class="reveal d3">
+          Licenciados por Habanos S.A. y presentes en las ferias más importantes del sector, somos el colectivo artístico cubano con mayor proyección internacional en la industria del tabaco de lujo.
+        </p>
+      </div>
+
+      <div class="reach-logos reveal d2">
+        <div class="reach-item">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="reach-item-text">
+            <strong>75+ países</strong>
+            <span>Presencia internacional consolidada en todos los continentes</span>
+          </div>
+        </div>
+        <div class="reach-item">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="reach-item-text">
+            <strong>147 Casas del Habano</strong>
+            <span>Suministro oficial a la red global de puntos de venta Habanos</span>
+          </div>
+        </div>
+        <div class="reach-item">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="reach-item-text">
+            <strong>Licenciados por Habanos S.A.</strong>
+            <span>Únicos fabricantes artesanales con licencia oficial de la institución</span>
+          </div>
+        </div>
+        <div class="reach-item">
+          <div class="reach-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="reach-item-text">
+            <strong>70+ eventos internacionales</strong>
+            <span>Presencia en las ferias y festivales del habano más importantes del mundo</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder" aria-labelledby="founder-title">
+    <div class="founder-inner">
+
+      <div class="founder-image reveal">
+        <img src="https://humidoresdecuba.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-18-at-2.44.29-AM-1.png"
+             alt="Taller DECUBA — Pinar del Río" loading="lazy" />
+        <div class="founder-quote-block">
+          <p>"Rescatar la cultura del tabaco y las técnicas artesanales cubanas es nuestra razón de ser."</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="label reveal">Nuestro fundador</p>
+        <h2 class="founder-name reveal d1" id="founder-title">Jorge Luis Milán</h2>
+        <p class="founder-role reveal d1">Fundador y Maestro Artesano · DECUBA</p>
+        <div class="gold-rule reveal d2"></div>
+        <p class="founder-bio reveal d2">
+          Nacido en Pinar del Río, Jorge Luis Milán Domínguez fundó DECUBA en 1995 con una visión clara: fusionar las dos grandes tradiciones de su tierra natal — la ebanistería y el tabaco — en objetos que trascendieran el tiempo. Con formación en diseño artesanal y una pasión inquebrantable por los oficios tradicionales cubanos, transformó un taller familiar en el colectivo artístico más reconocido internacionalmente en la producción de humidores de lujo.
+        </p>
+        <p class="founder-bio reveal d3">
+          Bajo su dirección, DECUBA obtuvo la licencia oficial de Habanos S.A., alcanzó presencia en más de 75 países y fue galardonada con el Premio al Mejor Stand del Festival del Habano XXIV en 2024. Milán lidera un equipo de 27 artesanos especializados que mantienen vivos los oficios de la marquetería, la talla en madera y la ebanistería cubana.
+        </p>
+        <p class="founder-bio reveal d4">
+          Su filosofía: <em>"Nuestros humidores no se fabrican — se crean. Cada pieza es un ejercicio de diseño e investigación que busca contar una historia a través de la madera."</em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta" aria-label="Contacto y colección">
+    <div class="about-cta-inner">
+      <h2 class="reveal">
+        Cada humidor cuenta<br>una <em>historia única</em>
+      </h2>
+      <p class="reveal d1">
+        Explora nuestra colección o contáctanos para una pieza personalizada.
+      </p>
+      <div class="cta-actions reveal d2">
+        <a href="index.html#coleccion" class="btn-primary">Ver la Colección</a>
+        <a href="https://wa.me/5350993108" class="btn-ghost" target="_blank" rel="noopener">Encargar pieza</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          DE CUBA
+          <span>Humidores Artesanales</span>
+        </div>
+        <p class="footer-tagline">
+          Desde 1995, cada humidor que sale de nuestro taller en Pinar del Río lleva décadas de oficio artesanal y la esencia del cedro cubano.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Colección</h4>
+        <ul role="list">
+          <li><a href="index.html#coleccion">Clásica</a></li>
+          <li><a href="index.html#coleccion">Reserve</a></li>
+          <li><a href="index.html#coleccion">Grand</a></li>
+          <li><a href="index.html#coleccion">Exclusiva</a></li>
+          <li><a href="index.html#coleccion">Viaje</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>La Marca</h4>
+        <ul role="list">
+          <li><a href="about.html">Nuestra Historia</a></li>
+          <li><a href="index.html#taller">Nuestro Taller</a></li>
+          <li><a href="about.html#awards-title">Premios</a></li>
+          <li><a href="about.html#founder-title">Fundador</a></li>
+          <li><a href="index.html#contacto">Encargos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul role="list">
+          <li><a href="mailto:humidoresdecuba@gmail.com">humidoresdecuba@gmail.com</a></li>
+          <li><a href="tel:+5350993108">+53 50 993 108</a></li>
+          <li><a href="https://wa.me/5350993108" target="_blank">WhatsApp</a></li>
+          <li><a href="#">Cuba, Pinar del Río</a></li>
+          <li><a href="#">Pascual Martí No. 197</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 DECUBA · Humidores de Cuba. Todos los derechos reservados.</p>
+      <nav class="footer-legal" aria-label="Legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/5350993108?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20humidores%20artesanales."
+     class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="whatsapp-pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
